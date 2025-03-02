@@ -1,0 +1,81 @@
+
+::-webkit-scrollbar {
+    display: none;
+  }
+.movie-card {
+    /* Ensure the card has consistent sizing */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-image {
+    /* Make the image cover the entire area */
+    width: 100%;
+    height: 400px;
+    /* Set a fixed height for the images */
+    object-fit: cover;
+    /* Makes sure the image covers the area without stretching */
+}
+
+.card-body {
+    /* Make the card body stretch and take up remaining space */
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    /* Slightly larger title */
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+    /* Subtle color for text */
+}
+
+.watchlist-text {
+    width: 45%;
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: #959797;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+button {
+    /* Style the button a bit more */
+
+    font-weight: bold;
+    background-color: #007bff;
+    border: none;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.col-md-4 {
+    /* Maintain equal-width layout */
+    padding: 15px;
+}
+
+.card {
+    /* Card should have a slight shadow and rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* .card:hover {
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-5px); 
+    transition: 0.3s ease;
+  } */
+
+.custom-width {
+    width: 30%;
+}

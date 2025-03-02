@@ -1,31 +1,60 @@
-
-import './App.css';
-import SearchBar, { Dropdown } from './components/SearchBar';
-import './components/searchbar.css'
-import Table from './components/Table';
+import { useState, useEffect } from "react";
+import Header from "./component/Header";
+import HomePage from "./component/HomePage";
+import movieData from "./utils/data";
+import WatchList from "./component/WatchList";
+import SubNavbar from "./components/SubNavbar";
 function App() {
-  const handleSearch = (query) => {
-    console.log("Search query:", query);
+  const [page, setPage] = useState("home");
+  const [isWatchFill, setIsWatchFill] = useState(false);
+  const [homeData, setHomeData] = useState([]);
+  const [watchListData, setWatchListData] = useState([]);
+
+  useEffect(() => {
+    setHomeData(movieData);
+  }, []);
+
+  const filterMovies = (genre) => {
+    const data =
+      genre === "all" ? movieData : movieData.filter((movie) => movie.genres.includes(genre));
+    setHomeData(data);
   };
 
-  const options = ["All", "Option1", "Option2", "Option3"];
-  const rightOptions = ["All", "Option11", "Option22", "Option32"];
-  const handleOption = (optionValue) => {
-    console.log("Option value:", optionValue);
+  const addToList = (movie) => {
+    if (watchListData.length < 5 ) {
+      const updatedWatchlist = [...watchListData, movie];
+      setWatchListData(updatedWatchlist);
+    } else {
+      setIsWatchFill(true);
+    }
+  };
+
+  const checkIsInWatchList = (id) => {
+    return watchListData.some((movie) => movie.id === id);
+  };
+
+  const removeMovie = (id) => {
+    const newData = watchListData.filter((movie) => movie.id !== id);
+    setWatchListData(newData);
   };
 
   return (
-    <div>
-      <div className="search-bar-container">
-        <Dropdown options={options} onOption={handleOption} className='dropdown'/>
-        <SearchBar placeholder="Search" onSearch={handleSearch} className="search" />
-        <Dropdown options={rightOptions} onOption={handleOption} />
-
-      </div>
-      <div>
-        <Table />
-      </div>
-    </div>
+    <>
+    <SubNavbar />     
+      {/* <Header setPage={setPage} />
+      {page === "home" ? (
+        <HomePage
+          isWatchFill={isWatchFill}
+          setIsWatchFill={setIsWatchFill}
+          homeData={homeData}
+          filterMovies={filterMovies}
+          checkIsInWatchList={checkIsInWatchList}
+          addToList={addToList}
+        />
+      ) : (
+        <WatchList watchListData={watchListData} removeMovie={removeMovie} />
+      )} */}
+    </>
   );
 }
 export default App;

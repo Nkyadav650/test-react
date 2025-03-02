@@ -1,0 +1,94 @@
+/* Container to limit width */
+.table-container {
+    width: 80%;
+    margin: auto;
+    position: relative;
+}
+
+/* Wrapper for scrolling effect */
+.table-wrapper {
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 12px; /* Space for scrollbar */
+}
+
+/* Table Styling */
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+/* Table Header and Data Cells */
+.custom-table th,
+.custom-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    background-color: white;
+    white-space: nowrap;
+}
+
+/* Fixed Columns */
+.fixed-col {
+    position: sticky;
+    background-color: white;
+    z-index: 3; /* Ensure fixed columns stay above scrollable content */
+}
+
+/* Left Fixed Columns */
+.fixed-col.left-first {
+    left: 0;
+}
+
+.fixed-col.left-second {
+    left: 150px; /* Adjust based on column width */
+}
+
+/* Right Fixed Columns */
+.fixed-col.right-last {
+    right: 0;
+}
+
+.fixed-col.right-second-last {
+    right: 170px; /* Adjust based on column width */
+}
+
+/* Ensure the second last column does not move */
+.fixed-col.right-second-last,
+.fixed-col.right-last {
+    min-width: 150px; /* Ensure both columns have the same width */
+}
+
+/* Scrollable Columns */
+.scrollable-col {
+    min-width: 150px;
+    position: relative; 
+    z-index: 2; 
+}
+/* Add shadow effect to indicate scrolling */
+.fixed-col.left-second::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -5px; /* Adjust for the shadow placement */
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.15), transparent);
+    pointer-events: none; /* Ensure it doesn't block interactions */
+    z-index: 4;
+}
+
+.fixed-col.right-second-last::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -5px; /* Adjust for the shadow placement */
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.15), transparent);
+    pointer-events: none;
+    z-index: 4;
+}
+
